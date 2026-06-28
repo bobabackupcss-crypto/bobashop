@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin DAVID SHOP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #ff6b35;
+      --dark: #111827;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --border: #f3e4d7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fffaf7;
+      color: var(--dark);
+      padding: 24px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 12px 30px rgba(17,24,39,0.06);
+      border: 1px solid var(--border);
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .topbar h1 { margin: 0; font-size: 1.5rem; }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .nav-links a, .nav-links button {
+      background: var(--dark);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .nav-links .secondary {
+      background: var(--primary);
+    }
+    .panel { border: 1px solid var(--border); border-radius: 18px; padding: 18px; margin-bottom: 18px; }
+    form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    input, textarea { width: 100%; border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; font-family: inherit; }
+    textarea { min-height: 90px; resize: vertical; grid-column: 1 / -1; }
+    button { grid-column: 1 / -1; border: 0; background: var(--primary); color: white; padding: 12px 14px; border-radius: 10px; font-weight: 700; cursor: pointer; }
+    .status { margin-top: 10px; color: var(--primary); font-weight: 600; }
+    .product-list { display: grid; gap: 12px; }
+    .product-item { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--border); border-radius: 12px; }
+    .product-item strong { display: block; }
+    .product-item button { width: auto; grid-column: auto; background: #dc2626; padding: 8px 12px; }
+    @media (max-width: 700px) { form { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <h1>Panel Admin DAVID SHOP</h1>
+      <div class="nav-links">
+        <a href="admin.html">Dashboard</a>
+        <a href="admin.html#produk">Kelola Produk</a>
+        <a class="secondary" href="index.html" target="_blank" rel="noopener noreferrer">Lihat Website</a>
+        <button type="button" id="logout-btn">Logout</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Tambah Produk</h3>
+      <form id="admin-form">
+        <input type="text" id="product-name" placeholder="Nama produk" required />
+        <input type="number" id="product-price" placeholder="Harga (angka)" required />
+        <input type="text" id="product-image" placeholder="URL gambar" required />
+        <textarea id="product-desc" placeholder="Deskripsi produk" required></textarea>
+        <button type="submit">Tambah Produk</button>
+      </form>
+      <div class="status" id="status-text"></div>
+    </div>
+
+    <div class="panel" id="produk">
+      <h3>Daftar Produk</h3>
+      <div class="product-list" id="product-list"></div>
+    </div>
+  </div>
+
+  <script>
+    const storageKey = 'davidShopProducts';
+    const adminForm = document.getElementById('admin-form');
+    const productList = document.getElementById('product-list');
+    const statusText = document.getElementById('status-text');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    if (localStorage.getItem('davidAdminLoggedIn') !== 'true') {
+      window.location.href = 'login.html';
+    }
+
+    let products = JSON.parse(localStorage.getItem(storageKey)) || [];
+
+    function formatPrice(value) {
+      return `Rp ${value.toLocaleString('id-ID')}`;
+    }
+
+    function saveProducts() {
+      localStorage.setItem(storageKey, JSON.stringify(products));
+    }
+
+    function renderProducts() {
+      if (products.length === 0) {
+        productList.innerHTML = '<div class="empty">Belum ada produk.</div>';
+        return;
+      }
+
+      productList.innerHTML = products.map((product, index) => `
+        <div class="product-item">
+          <div>
+            <strong>${product.name}</strong>
+            <div>${formatPrice(product.price)}</div>
+          </div>
+          <button type="button" data-index="${index}">Hapus</button>
+        </div>
+      `).join('');
+    }
+
+    adminForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('product-name').value.trim();
+      const price = Number(document.getElementById('product-price').value);
+      const image = document.getElementById('product-image').value.trim();
+      const desc = document.getElementById('product-desc').value.trim();
+
+      if (!name || !price || !image || !desc) {
+        statusText.textContent = 'Semua field wajib diisi.';
+        return;
+      }
+
+      products.unshift({ name, price, image, desc });
+      saveProducts();
+      renderProducts();
+      adminForm.reset();
+      statusText.textContent = 'Produk berhasil ditambahkan.';
+    });
+
+    productList.addEventListener('click', (event) => {
+      if (event.target.tagName === 'BUTTON') {
+        const index = Number(event.target.dataset.index);
+        products.splice(index, 1);
+        saveProducts();
+        renderProducts();
+        statusText.textContent = 'Produk berhasil dihapus.';
+      }
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem('davidAdminLoggedIn');
+      window.location.href = 'login.html';
+    });
+
+    renderProducts();
+  </script>
+</body>
+</html>

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DAVID SHOP | Toko Online Style & Premium</title>
+  <meta name="description" content="Belanja sepatu, jam tangan, headset, dan tas dengan kualitas premium dan harga terbaik di DAVID SHOP." />
+  <meta name="keywords" content="toko online, sepatu, jam tangan, headset, tas, belanja online" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #ff6b35;
+      --primary-dark: #e85b24;
+      --dark: #111827;
+      --muted: #6b7280;
+      --bg: #fffaf7;
+      --card: #ffffff;
+      --border: #f1d9c8;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark);
+      background: linear-gradient(180deg, #fffaf7 0%, #fff 100%);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #f2e8de;
+    }
+
+    .nav-container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 0.04em;
+    }
+
+    nav a {
+      margin-left: 20px;
+      font-weight: 500;
+      color: var(--dark);
+    }
+
+    .hero {
+      padding: 64px 24px 48px;
+    }
+
+    .hero-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.15;
+      margin: 0 0 16px;
+    }
+
+    .hero p {
+      font-size: 1.02rem;
+      color: var(--muted);
+      margin: 0 0 24px;
+      max-width: 600px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      display: inline-block;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 10px 24px rgba(255, 107, 53, 0.24);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--dark);
+      border: 1px solid var(--border);
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: white;
+      box-shadow: 0 10px 24px rgba(37, 211, 102, 0.24);
+    }
+
+    .hero-card {
+      background: white;
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: 0 20px 50px rgba(17, 24, 39, 0.08);
+      border: 1px solid #f7ebdf;
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      gap: 14px;
+    }
+
+    .section-title h2 {
+      font-size: 1.45rem;
+      margin: 0;
+    }
+
+    .section-title a {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .feature {
+      background: white;
+      border: 1px solid #f2e8de;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #f3e4d7;
+      box-shadow: 0 12px 30px rgba(17, 24, 39, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 38px rgba(17, 24, 39, 0.09);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 16px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .price {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .card .btn {
+      width: 100%;
+      text-align: center;
+      background: var(--dark);
+      color: white;
+      padding: 10px 14px;
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
+    }
+
+    .cart-widget {
+      position: relative;
+    }
+
+    .cart-btn {
+      border: 0;
+      background: var(--primary);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cart-btn span {
+      background: white;
+      color: var(--primary);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .cart-panel {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 10px);
+      width: 320px;
+      background: white;
+      border: 1px solid #f3e4d7;
+      border-radius: 16px;
+      box-shadow: 0 16px 40px rgba(17, 24, 39, 0.12);
+      padding: 14px;
+      display: none;
+      z-index: 30;
+    }
+
+    .cart-panel.open {
+      display: block;
+    }
+
+    .cart-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    #cart-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 240px;
+      overflow: auto;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f3e4d7;
+    }
+
+    .cart-item strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .cart-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .remove-btn {
+      border: 0;
+      background: #fee2e2;
+      color: #b91c1c;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .cart-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+      font-weight: 700;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      margin-top: 10px;
+      border: 0;
+      background: var(--primary);
+      color: white;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .checkout-form {
+      margin-top: 12px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .checkout-form.open {
+      display: flex;
+    }
+
+    .checkout-form input,
+    .checkout-form textarea {
+      width: 100%;
+      border: 1px solid #f3e4d7;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .checkout-form textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .checkout-form button {
+      border: 0;
+      background: var(--dark);
+      color: white;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .empty {
+      color: var(--muted);
+      padding: 8px 0;
+      font-size: 0.95rem;
+    }
+
+    .banner {
+      margin: 20px 24px 0;
+      background: linear-gradient(90deg, var(--primary), #ff944f);
+      color: white;
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      max-width: 1120px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .banner h3 { margin: 0 0 6px; font-size: 1.2rem; }
+    .banner p { margin: 0; opacity: 0.95; }
+
+    .testimonial {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid #f3e4d7;
+    }
+
+    .testimonial strong { display: block; margin-top: 8px; }
+
+    footer {
+      margin-top: 30px;
+      background: var(--dark);
+      color: white;
+      padding: 24px;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-wrap { grid-template-columns: 1fr; }
+      .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .features { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      .nav-container { flex-direction: column; gap: 10px; }
+      nav a { margin: 0 10px; }
+      .products { grid-template-columns: 1fr; }
+      .banner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <a class="logo" href="#">DAVID SHOP</a>
+      <nav>
+        <a href="#produk">Produk</a>
+        <a href="#keunggulan">Keunggulan</a>
+        <a href="#kontak">Kontak</a>
+        <a href="login.html" class="btn-secondary" style="padding: 10px 14px;">Admin</a>
+        <div class="cart-widget">
+          <button class="cart-btn" id="cart-toggle" type="button">🛒 <span id="cart-count">0</span></button>
+          <div class="cart-panel" id="cart-panel">
+            <div class="cart-panel-header">
+              <strong>Keranjang</strong>
+              <span>Belanja Anda</span>
+            </div>
+            <ul id="cart-list"></ul>
+            <div class="cart-footer">
+              <span>Total</span>
+              <span id="cart-total">Rp 0</span>
+            </div>
+            <button class="checkout-btn" id="checkout-btn" type="button">Checkout</button>
+            <form class="checkout-form" id="checkout-form">
+              <input type="text" id="customer-name" placeholder="Nama Anda" required />
+              <input type="text" id="customer-phone" placeholder="No. WhatsApp" required />
+              <textarea id="customer-address" placeholder="Alamat lengkap" required></textarea>
+              <button type="submit">Pesan Sekarang</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-wrap">
+        <div>
+          <h1>Temukan gaya terbaikmu di DAVID SHOP.</h1>
+          <p>Belanja sepatu, jam tangan, headset, dan tas dengan kualitas premium, desain modern, dan harga yang bersaing.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#produk">Belanja Sekarang</a>
+            <a class="btn btn-secondary" href="#keunggulan">Lihat Keunggulan</a>
+            <a class="btn btn-whatsapp" href="https://wa.me/6281234567890?text=Halo%20DAVID%20SHOP%2C%20saya%20ingin%20bertanya%20tentang%20produk%20Anda" target="_blank" rel="noopener noreferrer">💬 Chat WhatsApp</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80" alt="Produk fashion premium" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="keunggulan">
+      <div class="section-title">
+        <h2>Kenapa pilih DAVID SHOP?</h2>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <strong>🚚 Pengiriman Cepat</strong>
+          <span>Pesanan diproses cepat dan dikirim ke seluruh Indonesia.</span>
+        </div>
+        <div class="feature">
+          <strong>✅ Produk Asli</strong>
+          <span>Kami menyediakan produk original dengan kualitas terjamin.</span>
+        </div>
+        <div class="feature">
+          <strong>💬 Layanan 24/7</strong>
+          <span>Tim support siap membantu sebelum dan sesudah belanja.</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="banner">
+      <div>
+        <h3>Diskon spesial minggu ini!</h3>
+        <p>Dapatkan promo menarik untuk pembelian pertama kamu.</p>
+      </div>
+      <a class="btn btn-secondary" href="login.html">Buka Admin</a>
+    </div>
+
+    <section class="section" id="produk">
+      <div class="section-title">
+        <h2>Produk Terlaris</h2>
+        <a href="#kontak">Hubungi kami</a>
+      </div>
+      <div class="products" id="product-list"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Apa kata pelanggan?</h2>
+      </div>
+      <div class="products">
+        <div class="testimonial">
+          <p>“Barang berkualitas, pengiriman cepat, dan pelayanan ramah. Saya sangat puas belanja di DAVID SHOP.”</p>
+          <strong>— Rina, Jakarta</strong>
+        </div>
+        <div class="testimonial">
+          <p>“Desain produknya keren dan harganya sesuai kualitas. Sangat recommended untuk belanja online.”</p>
+          <strong>— Bima, Bandung</strong>
+        </div>
+        <div class="testimonial">
+          <p>“Saya sering belanja di sini karena selalu ada promo menarik dan pengemasan aman.”</p>
+          <strong>— Sari, Surabaya</strong>
+        </div>
+        <div class="testimonial">
+          <p>“Proses checkout-nya mudah dan respon CS sangat cepat. Belanja jadi nyaman.”</p>
+          <strong>— Dika, Medan</strong>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="kontak">
+    <div>© 2026 DAVID SHOP — Toko online terpercaya untuk kebutuhan style dan teknologi.</div>
+    <div style="margin-top: 8px; color: #d1d5db;">Hubungi kami melalui WhatsApp atau Instagram untuk pemesanan.</div>
+    <div style="margin-top: 12px;">
+      <a class="btn btn-whatsapp" href="https://wa.me/6281234567890?text=Halo%20DAVID%20SHOP%2C%20saya%20ingin%20memesan%20produk" target="_blank" rel="noopener noreferrer">📲 Pesan via WhatsApp</a>
+    </div>
+  </footer>
+
+  <script>
+    const cartItems = [];
+    const cartCount = document.getElementById('cart-count');
+    const cartList = document.getElementById('cart-list');
+    const cartTotal = document.getElementById('cart-total');
+    const cartPanel = document.getElementById('cart-panel');
+    const cartToggle = document.getElementById('cart-toggle');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const checkoutForm = document.getElementById('checkout-form');
+    const customerName = document.getElementById('customer-name');
+    const customerPhone = document.getElementById('customer-phone');
+    const customerAddress = document.getElementById('customer-address');
+    const productList = document.getElementById('product-list');
+
+    const storageKey = 'davidShopProducts';
+    const defaultProducts = [
+      {
+        name: 'Sepatu Sneakers',
+        price: 299000,
+        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80',
+        desc: 'Nyaman dipakai harian dan cocok untuk berbagai gaya.'
+      },
+      {
+        name: 'Jam Tangan Premium',
+        price: 499000,
+        image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=80',
+        desc: 'Desain elegan untuk penampilan lebih percaya diri.'
+      },
+      {
+        name: 'Headset Gaming',
+        price: 399000,
+        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80',
+        desc: 'Audio jernih dan kenyamanan maksimal saat bermain.'
+      },
+      {
+        name: 'Tas Ransel Modern',
+        price: 259000,
+        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80',
+        desc: 'Ruang penyimpanan luas dan desain stylish untuk aktivitas.'
+      }
+    ];
+
+    let products = JSON.parse(localStorage.getItem(storageKey)) || defaultProducts;
+
+    function formatPrice(value) {
+      return `Rp ${value.toLocaleString('id-ID')}`;
+    }
+
+    function saveProducts() {
+      localStorage.setItem(storageKey, JSON.stringify(products));
+    }
+
+    function renderProducts() {
+      if (!productList) return;
+      if (products.length === 0) {
+        productList.innerHTML = '<div class="empty">Belum ada produk yang ditambahkan.</div>';
+        return;
+      }
+
+      productList.innerHTML = products.map(product => `
+        <article class="card">
+          <img src="${product.image}" alt="${product.name}" />
+          <div class="card-body">
+            <h3>${product.name}</h3>
+            <p>${product.desc}</p>
+            <div class="price">${formatPrice(product.price)}</div>
+            <a class="btn" href="https://wa.me/6281234567890?text=Halo%20DAVID%20SHOP%2C%20saya%20ingin%20memesan%20${encodeURIComponent(product.name)}%20seharga%20${encodeURIComponent(formatPrice(product.price))}" target="_blank" rel="noopener noreferrer">Beli Sekarang</a>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderCart() {
+      const totalQty = cartItems.reduce((sum, item) => sum + item.qty, 0);
+      cartCount.textContent = totalQty;
+
+      if (cartItems.length === 0) {
+        cartList.innerHTML = '<li class="empty">Keranjang masih kosong</li>';
+        cartTotal.textContent = 'Rp 0';
+        return;
+      }
+
+      cartList.innerHTML = cartItems.map(item => `
+        <li class="cart-item">
+          <div>
+            <strong>${item.name}</strong>
+            <div>${formatPrice(item.price)} x ${item.qty}</div>
+          </div>
+          <div class="cart-actions">
+            <span>${formatPrice(item.price * item.qty)}</span>
+            <button class="remove-btn" type="button" data-name="${item.name}">×</button>
+          </div>
+        </li>
+      `).join('');
+
+      const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+      cartTotal.textContent = formatPrice(totalPrice);
+    }
+
+    function addToCart(name, price) {
+      const existing = cartItems.find(item => item.name === name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cartItems.push({ name, price, qty: 1 });
+      }
+      renderCart();
+    }
+
+    function removeFromCart(name) {
+      const index = cartItems.findIndex(item => item.name === name);
+      if (index >= 0) {
+        cartItems.splice(index, 1);
+        renderCart();
+      }
+    }
+
+    cartToggle.addEventListener('click', () => {
+      cartPanel.classList.toggle('open');
+    });
+
+    checkoutBtn.addEventListener('click', () => {
+      if (cartItems.length === 0) {
+        alert('Keranjang masih kosong. Tambah produk terlebih dahulu.');
+        return;
+      }
+      checkoutForm.classList.toggle('open');
+    });
+
+    checkoutForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (cartItems.length === 0) {
+        alert('Keranjang masih kosong.');
+        return;
+      }
+
+      const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+      alert(`Pesanan berhasil dikirim!\nNama: ${customerName.value}\nNo HP: ${customerPhone.value}\nAlamat: ${customerAddress.value}\nTotal: Rp ${totalPrice.toLocaleString('id-ID')}`);
+      cartItems.length = 0;
+      checkoutForm.reset();
+      checkoutForm.classList.remove('open');
+      renderCart();
+    });
+
+    document.addEventListener('click', (event) => {
+      if (event.target.classList.contains('remove-btn')) {
+        removeFromCart(event.target.dataset.name);
+      }
+    });
+
+    renderProducts();
+    renderCart();
+  </script>
+</body>
+</html>
